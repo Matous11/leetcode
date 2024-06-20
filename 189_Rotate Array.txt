@@ -1,0 +1,26 @@
+#link to description https://leetcode.com/problems/rotate-array/description/?envType=study-plan-v2&envId=top-interview-150
+#Given an integer array nums, rotate the array to the right by 'k' steps, where 'k' is non-negative.
+class Solution:
+    def reverse(self, nums, start, end):
+        while start < end: 
+            nums[start], nums[end] = nums[end], nums[start]
+            start += 1
+            end -= 1
+
+    def rotate(self, nums, k):
+        n = len(nums)
+        k %= n  
+        # when 'k' (number of rotations) is greater than length of array then rotating the array 'k' times will deliver
+        # same result as rotating the array 'k%n' times 
+        
+        self.reverse(nums, 0, n - 1) # reverse array 
+        
+        self.reverse(nums, 0, k - 1) # reverse 'k' elements in array
+        
+        self.reverse(nums, k, n - 1) # reverse the remaining elements in array
+# inputs      
+nums = [1, 2, 3, 4, 5,6]
+k = 4
+#result
+Solution().rotate(nums,k)
+print(nums)

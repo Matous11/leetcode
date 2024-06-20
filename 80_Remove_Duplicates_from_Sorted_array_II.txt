@@ -1,0 +1,32 @@
+# link to description https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/?envType=study-plan-v2&envId=top-interview-150      
+# I have an array in non-decreasing order.
+# I have to remove duplicates so each unique element appears at most twice.
+# I need to return the new array and the length of the array
+
+class Solution:
+    def removeDuplicates(self, nums):
+    
+        # If the length of array is less or equal than 2 then return the array
+        if len(nums) <= 2:
+            return len(nums)
+        
+        # auxiliary variable (i want to start the logic at index 2 - third element)
+        k = 2
+        
+        # i start the logic from index 2 (third element)
+        for i in range(2, len(nums)):
+            # if the current element is not equal to the element at `k-2` position
+            if nums[i] != nums[k - 2]: #if is equal then skip
+                #place the current element at the `k` position
+                nums[k] = nums[i]
+                # increment of k
+                k += 1      
+        # return the length of the modified array
+        return k
+# inputs
+#nums = [0,0,1,1,1,1,2,3,3]
+nums = [1,1,1,2,2,3]
+
+#result
+print(f'{Solution().removeDuplicates(nums)}') 
+print(f'{nums[:Solution().removeDuplicates(nums)]}')
